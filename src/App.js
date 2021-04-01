@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+import axios from "axios";
+import { useEffect, useState } from "react";
+import classes from "./Example1.module.css";
+const Example1 = () => {
+  const [email, setEmail] = useState("Loading...");
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users/7")
+      .then((response) => {
+        setEmail(response.data.email);
+      });
+  }, []);
+  useEffect(() => {}, []);
+  return <div className={classes.Example1}>{email}</div>;
+};
+export default Example1;
